@@ -11,7 +11,7 @@ import java.util.List;
 public interface GeneralRepo extends JpaRepository<General,Long> {
     @Query(nativeQuery = true,value = "with \n" +
             "const as (select :assetId as d_id),\n" +
-            "dev_mes as (select d.id device_id, d.user_data_name ,d.display_name,d.typecopy device_type, d.category category,d.docker_vdms_id vdmsid,m.id point_id, m.name point_name, m.value curval, m.unit unit\n" +
+            "dev_mes as (select d.id device_id, d.user_data_name ,d.display_name,d.type device_type, d.category category,d.docker_vdms_id vdmsid,m.id point_id, m.name point_name,m.type measuring_instrument_type, m.value curval, m.unit unit\n" +
             "from const c,device d join measuring_instrument m on d.id = m.device_id where d.id = c.d_id),\n" +
             "dev_loc as (select d.id dev_id,d.location_id, l.floor_id \n" +
             "from const c, device d join location l on l.id = d.location_id where c.d_id = d.id),\n" +
@@ -99,7 +99,7 @@ public interface GeneralRepo extends JpaRepository<General,Long> {
             "JSON_OBJECT(\"id\",d.device_id,\"unique_name\",COALESCE(d.user_data_name,d.display_name),\"type\",d.device_type,\n" +
             "\"sclera_point_equipment_location_ref\",l.location_id,\"sclera_point_equipment_floor_ref\",l.floor_id,\"sclera_point_equipment_category\",d.category),\n" +
             "\"raw_data_base64\",null,\"raw_data\", \n" +
-            "JSON_OBJECT(\"dis\",d.point_name,\"curVal\",d.curval,\"unit\",d.unit,\n" +
+            "JSON_OBJECT(\"dis\",d.point_name,\"curVal\",d.curval,\"unit\",d.unit, \"measuring_instrument_type\", d.measuring_instrument_type,\n" +
             "\"sclera_attributes\", cast(aa.attributes as json), \"sclera_locations\",\n" +
             "        CASE\n" +
             "\t        WHEN ml.location_id IS NOT NULL AND l.location_id IS NOT NULL THEN\n" +

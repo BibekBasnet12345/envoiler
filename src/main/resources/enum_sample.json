@@ -1,0 +1,45 @@
+{
+    "enum_List": [
+        {
+            "type": "Communication Status",
+            "enum": {
+                "0": "Normal",
+                "1": "Faulty"
+            }
+        },
+        {
+            "type": "Configuration Status",
+            "enum": {
+                "0": "Normal",
+                "1": "Faulty"
+            }
+        },
+        {
+            "type": "Light Status",
+            "enum": {
+                "0": "Off",
+                "1": "On"
+            }
+        },
+        {
+            "type": "Energy monitor",
+            "enum": {
+                "inactive": "Wasted",
+                "active": "Normal"
+            }
+        },
+        {
+            "type": "Interface Status",
+            "enum": {
+                "1": "Up",
+                "2": "Down",
+                "3": "Testing",
+                "4": "Unknown",
+                "5": "Dormant",
+                "6": "Not Present",
+                "7": "Lower Layer Down",
+                "default": "Not Available"
+            }
+        }
+    ]
+}
