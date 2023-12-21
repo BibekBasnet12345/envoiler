@@ -2,22 +2,26 @@ package com.example.Envoiler.util;
 
 
 import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 public class MarkerChecker {
 
-    public void isMarkerChecker(String[] markerList, JSONObject rawData) throws JSONException {
+    public String isMarkerChecker(String[] markerList) throws JSONException {
 
         for (String marker : markerList) {
-            if(marker.equalsIgnoreCase("Avg")||marker.equalsIgnoreCase("Average")){
-                rawData.put("avg",":m");
+
+            if (marker.equalsIgnoreCase("Avg") || marker.equalsIgnoreCase("Average")) {
+                return "avg";
+            } else if (marker.equalsIgnoreCase("Max") || marker.equalsIgnoreCase("Maximum")) {
+                return "max";
+            } else if (marker.equalsIgnoreCase("Min") || marker.equalsIgnoreCase("Minimum")) {
+                return "min";
+            } else if (marker.equalsIgnoreCase("Light") || marker.equalsIgnoreCase("Heating") || marker.equalsIgnoreCase("Temperature") ||
+                    marker.equalsIgnoreCase("Energy") || marker.equalsIgnoreCase("Cooling")
+            ) {
+                return marker.toLowerCase();
             }
-                if (marker.equalsIgnoreCase("Light") || marker.equalsIgnoreCase("Heating") || marker.equalsIgnoreCase("Temperature") ||
-                        marker.equalsIgnoreCase("Energy") || marker.equalsIgnoreCase("Cooling") ||
-                        marker.equalsIgnoreCase("Max")||marker.equalsIgnoreCase("Min")||marker.equalsIgnoreCase("Avg")) {
-                    rawData.put(marker.toLowerCase(), ":m");
-                }
         }
 
+        return null;
     }
 }
